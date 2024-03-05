@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Converter</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #FFB6C1; 
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .converter {
+      background: #FFF;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 400px;
+    }
+    input[type="number"] {
+      width: 150px;
+      padding: 10px;
+      margin-right: 20px;
+      border: 2px solid #FF69B4;
+      border-radius: 20px;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+    }
+    select {
+      padding: 10px;
+      border: 2px solid #FF69B4; 
+      border-radius: 20px;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+    }
+    button {
+      padding: 15px 30px;
+      background: #FF6347; 
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background: #FF5733; 
+    }
+    #result {
+      margin-top: 20px;
+      font-family: Arial, sans-serif;
+      font-size: 20px;
+      color: #FF69B4; 
+    }
+    h1 {
+      font-size: 24px;
+      color: #FF69B4; 
+      margin-bottom: 20px;
+    }
+    .temperature-symbol {
+      font-size: 24px;
+      vertical-align: middle;
+      color: #FF6347;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="converter">
+      <h1>Temperature Converter <span class="temperature-symbol">°</span></h1>
+      <input type="number" id="temperature" placeholder="Enter Temperature">
+      <select id="unit">
+        <option value="celsius">Celsius</option>
+        <option value="fahrenheit">Fahrenheit</option>
+      </select>
+      <br><br>
+      <button onclick="convertTemperature()">Convert</button>
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script>
+    function convertTemperature() {
+      const temperature = parseFloat(document.getElementById('temperature').value);
+      const unit = document.getElementById('unit').value;
+      let convertedTemperature;
+
+      if (isNaN(temperature)) {
+        alert('Please enter a valid temperature!');
+        return;
+      }
+
+      if (unit === 'celsius') {
+        convertedTemperature = (temperature - 32) * 5/9;
+        document.getElementById('result').innerHTML = `${convertedTemperature.toFixed(2)} °C`;
+      } else {
+        convertedTemperature = (temperature * 9/5) + 32;
+        document.getElementById('result').innerHTML = `${convertedTemperature.toFixed(2)} °F`;
+      }
+    }
+  </script>
+</body>
+</html>
